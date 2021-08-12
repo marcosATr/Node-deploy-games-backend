@@ -7,10 +7,11 @@ import dotenv from "dotenv";
 const app = express();
 
 const corsOptions = {
-  origin: 'http://example.com',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
+  origin: "https://express-games-backend-rest-api.herokuapp.com/",
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 app.use(cors(corsOptions));
+
 dotenv.config();
 process.env.USERDB;
 process.env.PASSWORDDB;
@@ -23,7 +24,6 @@ app.use(express.json());
 // const dbuser = "gmc_ATr";
 // const password = "audrNxsz81ch5ylG";
 const uri = `mongodb+srv://${process.env.USERDB}:${process.env.PASSWORDDB}@cluster0.vdtwk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-
 
 mongoose.set("useFindAndModify", false);
 mongoose.Promise = global.Promise;
