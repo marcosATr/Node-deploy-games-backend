@@ -9,22 +9,17 @@ import {
 } from "../controllers/crmController.mjs";
 
 const routes = (app) => {
-  app.route("/").get((req, res) => {
+  app.route("/").get((req, res, next) => {
     console.log(`Request from ${req.originalUrl}`);
     console.log(`Request Method ${req.method}`);
+    next();
   }, listAll);
 
   app.route("/cadastrar").post(addNew);
 
-  app
-    .route("/:gameID")
-    .get(listSingle)
-    
+  app.route("/:gameID").get(listSingle);
 
-  app
-  .route("/:gameID/edit")
-  .put(updateSingle)
-  .delete(deleteSingle);
+  app.route("/:gameID/edit").put(updateSingle).delete(deleteSingle);
 };
 
 export default routes;

@@ -6,7 +6,14 @@ const Game = mongoose.model("Game", GameSchema);
 const addNew = async (req, res) => {
   const record = req.body;
   console.log(record);
-  const response = await Game.create(record);
+  //const response = await Game.create(record);
+  await Game.create(record, (err, game) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(record);
+    }
+  });
 };
 
 const listAll = async (req, res) => {
@@ -45,16 +52,13 @@ const updateSingle = async (req, res) => {
 };
 
 const deleteSingle = async (req, res) => {
-  await Game.findByIdAndRemove(
-    { _id: req.params.gameID },
-    (err, game) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.json({ message: "deleted game" });
-      }
+  await Game.findByIdAndRemove({ _id: req.params.gameID }, (err, game) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json({ message: "deleted game" });
     }
-  );
+  });
 };
 
 export { addNew, listAll, listSingle, updateSingle, deleteSingle };
