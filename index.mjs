@@ -10,7 +10,7 @@ const corsOptions = {
   origin: "https://express-games-backend-rest-api.herokuapp.com/",
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
-app.use(cors(corsOptions));
+app.use(cors());
 
 dotenv.config();
 process.env.USERDB;
