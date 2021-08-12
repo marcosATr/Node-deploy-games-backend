@@ -6,7 +6,11 @@ import dotenv from "dotenv";
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: 'http://example.com',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+app.use(cors(corsOptions));
 dotenv.config();
 process.env.USERDB;
 process.env.PASSWORDDB;
